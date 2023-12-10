@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet"> <!-- Link to your external styles.css file -->
+    <style>
+        body {
+            font-family: 'Vollkorn', serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        #error-image {
+            max-width: 80%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        #error-text {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+    <title>404 Not Found</title>
+</head>
+<body>
+    <img id="error-image" src="https://example.com/path/to/error-image.png" alt="404 Not Found">
+    <p id="error-text">Oops! The page you're looking for is not here.</p>
+</body>
+</html>
