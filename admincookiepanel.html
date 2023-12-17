@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Cookie Panel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: #fff;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #analytics p {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginForm">
+        <h2>Login to Admin Panel</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="analytics" hidden>
+        <h2>Bluetooth Device Analytics</h2>
+        <p>Last Discovered Device: <span id="lastDiscoveredDevice"></span></p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Check if the entered credentials are correct
+            if (username === 'admin' && password === 'admin') {
+                showAnalytics();
+            } else {
+                alert('Incorrect username or password. Please try again.');
+            }
+        }
+
+        function showAnalytics() {
+            // Hide the login form
+            document.getElementById('loginForm').hidden = true;
+
+            // Show the analytics section
+            document.getElementById('analytics').hidden = false;
+
+            // Example of getting a cookie value
+            var lastDiscoveredDevice = getCookie('lastDiscoveredDevice');
+            if (lastDiscoveredDevice) {
+                // Display analytics
+                document.getElementById('lastDiscoveredDevice').innerText = lastDiscoveredDevice;
+            }
+        }
+
+        function logout() {
+            // Clear the analytics
+            document.getElementById('lastDiscoveredDevice').innerText = '';
+
+            // Show the login form
+            document.getElementById('loginForm').hidden = false;
+
+            // Hide the analytics section
+            document.getElementById('analytics').hidden = true;
+        }
+
+        // Function to get a cookie value by name
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+    </script>
+</body>
+</html>
