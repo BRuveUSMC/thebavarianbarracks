@@ -1,211 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" />
-    <link href="styles.css" rel="stylesheet" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth Device Configuration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <style>
         body {
-            font-family: 'Vollkorn', serif;
-            background-color: #121212;
-            color: #fff;
+            font-family: 'Raleway', sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        #cookieBanner {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
             text-align: center;
         }
 
-        #error-image {
-            max-width: 80%;
-            height: auto;
-            border-radius: 50%;
+        #cookieBanner button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
 
-        #error-text {
-            margin-top: 20px;
-            font-size: 1.5em;
+        #cookieBanner button.accept {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #cookieBanner button.decline {
+            background-color: #555;
+            color: #fff;
         }
 
         header {
-            position: relative;
-            text-align: center;
-            padding: 50px 0;
-            background-color: #1a1a1a;
-        }
-
-        header h1 {
-            font-size: 3em;
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2em;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #1a1a1a;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            padding: 12px 16px;
-            display: block;
-            color: #fff;
-            text-decoration: none;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #3498db;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .promo {
-            text-align: center;
-            padding: 30px;
-            background-color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-        }
-
-        .promo h2 {
-            color: #3498db;
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .promo p {
-            font-size: 1.2em;
-        }
-
-        .promo button {
-            background-color: #3498db;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .promo button:hover {
-            background-color: #2980b9;
-        }
-
-        .features {
-            padding: 30px;
-            background-color: #34495e;
-        }
-
-        .features h2 {
-            color: #3498db;
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .features ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .features li {
-            margin-bottom: 10px;
-        }
-
-        footer {
-            text-align: center;
+            background-color: #333;
             padding: 20px;
-            background-color: #2c3e50;
+            text-align: center;
         }
 
-        footer p {
-            font-size: 1.2em;
+        h1 {
+            margin: 0;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        input, textarea, button, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            background-color: #333;
+            color: #fff;
+        }
+
+        hr {
+            border: 1px solid #555;
+        }
+
+        p {
+            color: #777;
+        }
+
+        disclaimer {
+            margin-top: 20px;
         }
     </style>
-    <title>Your Page Title</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            if (document.querySelector('#content') === null) {
-                window.location.replace("/404.html"); // Adjust the path if needed
-            }
-        });
-    </script>
 </head>
-
 <body>
-    <div id="content">
-        <!-- Your main content goes here -->
-
-        <header>
-            <h1>Bavarian Barracks</h1>
-            <p>Serve Your Leader BRuveUSMC</p>
-            <!-- Dropdown menu -->
-            <div class="dropdown">
-                <button>Menu</button>
-                <div class="dropdown-content">
-                    <a href="apply_for_ocs.html">Apply For OCS</a>
-                    <a href="about_founder.html">About our Founder</a>
-                    <a href="report_bug.html">Report A Bug</a>
-                    <a href="game_ideas.html">Game Ideas</a>
-                    <a href="discord.html">Join The Discord</a>
-                </div>
-            </div>
-        </header>
-
-        <section class="promo">
-            <h2>Join the Battle!</h2>
-            <p>Join the group.</p>
-            <button onclick="redirectToRoblox()">Play Now</button>
-        </section>
-
-        <section class="features">
-            <h2>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; Waffen SS</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; Luftwaffe</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; SS Panzer</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; SS Feindjagerkorps</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; Wehrmacht</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; SS</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; Bavarian Training Regiment</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; Party Staff</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; SD</h2>
-            <h2 style="color: rgb(52, 152, 219); font-size: 2em; margin-bottom: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&bull; Local Police</h2>
-            <p>&nbsp;</p>
-        </section>
-
-        <footer>
-            <p>Site Made By BRuveUSMC</p>
-        </footer>
-
-        <script>
-            function redirectToRoblox() {
-                // Replace the URL with the actual Roblox game link
-                window.location.href = 'https://www.roblox.com/games/15454105353/Bavarian-Barracks';
-            }
-        </script>
+    <div id="cookieBanner">
+        <p>This website uses cookies. Allow cookies to enhance your user experience.</p>
+        <button class="accept" onclick="acceptCookies()">Accept</button>
+        <button class="decline" onclick="declineCookies()">Decline</button>
     </div>
 
+    <header>
+        <h1>Bluetooth Device Configuration</h1>
+    </header>
+
+    <section>
+        <label for="deviceSelector">Select a Bluetooth Device:</label>
+        <select id="deviceSelector"></select>
+
+        <button onclick="discoverDevices()">Search for Devices</button>
+
+        <hr>
+
+        <label for="deviceName">Device Name:</label>
+        <input type="text" id="deviceName" placeholder="Enter new device name">
+
+        <label for="settings">Settings:</label>
+        <textarea id="settings" placeholder="Enter device settings"></textarea>
+
+        <button onclick="configureDevice()">Configure Device</button>
+    </section>
+
+    <disclaimer>
+        <p><strong>Disclaimer:</strong> Xbox Series S and X controllers might not be fully compatible with the Web Bluetooth API. Please check the latest browser and device compatibility before proceeding.</p>
+    </disclaimer>
+
     <script>
-        // Add any additional JavaScript specific to this page, if needed
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        // Function to get a cookie value by name
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Function to show the cookie consent banner
+        function showCookieBanner() {
+            var cookieBanner = document.getElementById('cookieBanner');
+            cookieBanner.style.display = 'block';
+        }
+
+        // Function to accept cookies
+        function acceptCookies() {
+            setCookie('cookieConsent', 'accepted', 365);
+            hideCookieBanner();
+        }
+
+        // Function to decline cookies
+        function declineCookies() {
+            setCookie('cookieConsent', 'declined', 365);
+            hideCookieBanner();
+        }
+
+        // Function to hide the cookie consent banner
+        function hideCookieBanner() {
+            var cookieBanner = document.getElementById('cookieBanner');
+            cookieBanner.style.display = 'none';
+        }
+
+        // Check if the user has previously accepted or declined cookies
+        var cookieConsent = getCookie('cookieConsent');
+        if (!cookieConsent) {
+            showCookieBanner();
+        }
+
+        // Your existing code for Bluetooth functionality
+        let selectedDevice;
+
+        function discoverDevices() {
+            // ... your existing code for discovering devices ...
+
+            // Example of setting a cookie when a device is discovered
+            setCookie('lastDiscoveredDevice', selectedDevice.name, 7);
+        }
+
+        function configureDevice() {
+            // ... your existing code for configuring a device ...
+
+            // Example of getting a cookie value
+            var lastDiscoveredDevice = getCookie('lastDiscoveredDevice');
+            if (lastDiscoveredDevice) {
+                alert('Last discovered device: ' + lastDiscoveredDevice);
+            }
+        }
     </script>
 </body>
-
 </html>
